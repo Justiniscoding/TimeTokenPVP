@@ -90,8 +90,6 @@ var facing = 1
 var inputNum = str(1)
 var inNum = 1
 
-var ignoreInputs := false
-
 class otherPlayer:
 	var pos: Vector2
 	var facing: int
@@ -104,7 +102,6 @@ func _ready() -> void:
 		if name == "Player":
 			pnum = "1"
 		else:
-			ignoreInputs = true
 			pnum = "2"
 	else:
 		if name == "Player":
@@ -127,7 +124,7 @@ func _ready() -> void:
 func getCollider():
 	if $Weapon.has_overlapping_bodies():
 		for body in $Weapon.get_overlapping_bodies():
-			if body.name.begins_with("Player") and not body.name == name:
+			if body.name != name and (body.name.begins_with("Player") or body.name == "DummyPlayer"):
 				return body
 
 	return null
@@ -175,11 +172,13 @@ func fight():
 			if not player == null and not currentAttack == Attacks.NONE and not didAttack:
 				didAttack = true
 
-				Global.remove_hp(1 if inNum == 2 else 2, 3)
-				
-
-				player.targetVel.y = -1500
-				player.targetVel.x = 1500 if $AnimatedSprite2D.flip_h else -1500
+				if Global.isMultiplayer:
+					var id = player.get_parent().name
+					Global.emit("hitPlayer", id, 3, 1500 if $AnimatedSprite2D.flip_h else -1500, -1500, 0)
+				else:
+					Global.remove_hp(1 if inNum == 2 else 2, 3)
+					player.targetVel.y = -1500
+					player.targetVel.x = 1500 if $AnimatedSprite2D.flip_h else -1500
 		else:
 			if not didAttack:
 				didAttack = true
@@ -220,24 +219,22 @@ func fight():
 var isJumping = false
 
 func _physics_process(delta: float) -> void:
-	if not ignoreInputs:
-		startup.update(delta)
-		end.update(delta)
-		active.update(delta)
-		stun.update(delta)
+	startup.update(delta)
+	end.update(delta)
+	active.update(delta)
+	stun.update(delta)
 	
 	if name == "Player":
 		modulate = Color8(100, 100, 255)
 	else:
 		modulate = Color8(255, 100, 100, 255)
 
-
-	if stun.can() and not ignoreInputs:
+	if stun.can():
 		fight()
 
 	var direction = Input.get_axis("left" + inputNum, "right" + inputNum) * speed
 
-	if not stun.can() or ignoreInputs:
+	if not stun.can():
 		direction = 0
 
 	if not is_on_floor():
@@ -271,7 +268,7 @@ func _physics_process(delta: float) -> void:
 		$Weapon.position.x = -4
 
 
-	if Input.is_action_just_pressed("up" + inputNum) and not ignoreInputs:
+	if Input.is_action_just_pressed("up" + inputNum):
 		if is_on_floor() or canDoubleJump:
 			var audio = AudioStreamPlayer.new()
 			audio.stream = jumpSound
@@ -300,5 +297,3 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	velocity -= targetVel
-
-	fight()

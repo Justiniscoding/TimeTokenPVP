@@ -61,8 +61,11 @@ func _physics_process(delta: float) -> void:
 				middleAudio.stop()	
 			playAudio(end, 10)
 			set_physics_process(false)
-			body.targetVel.x = 400 * direction
-			Global.remove_hp(playerNumber, 5)
+			if Global.isMultiplayer:
+				Global.emit("hitPlayer", body.get_parent().name, 5, 400 * direction, 0, 0)
+			else:
+				body.targetVel.x = 400 * direction
+				Global.remove_hp(playerNumber, 5)
 			$AnimatedSprite2D.connect("animation_finished", func():
 				# await get_tree().create_timer(1.25).timeout
 				queue_free())

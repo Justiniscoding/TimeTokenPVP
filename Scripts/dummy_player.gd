@@ -1,7 +1,7 @@
 extends Node2D
 
 var targetPosition: Vector2
-var facing = 1
+var facing = "1"
 
 func _process(_delta: float) -> void:
 	position = lerp(position, targetPosition, 0.2)

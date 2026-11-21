@@ -30,13 +30,18 @@ func init_multiplayer():
 
 	socket = WebSocketPeer.new()
 
-	var error = socket.connect_to_url("ws://10.5.33.222:8080")
+	var wsUrl = "wss://localhost:8080"
+
+	if OS.has_feature("web"):
+		wsUrl = "wss://24.141.80.54:8080"
+
+	var error = socket.connect_to_url(wsUrl, TLSOptions.client_unsafe())
 
 	if error == OK:
 		print("connected to websocket")
 		set_process(true)
 	else:
-		push_error("error coneccting to websocket")
+		push_error("error connecting to websocket")
 
 var events = {}
 
@@ -68,3 +73,9 @@ func _process(_delta: float) -> void:
 				if events.has(title):
 					for callback in events[title]:
 						callback.callv(content.slice(1))
+
+# all this is just to make sure players get removed in multiplayer and don't persist
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and Global.isMultiplayer:
+		socket.close()
+		get_tree().quit()

@@ -14,6 +14,14 @@ func playerMove(id: String, x: String, y: String, facing: String, anim: String) 
 	if not (otherPlayer.get_node("AnimatedSprite2D").animation.begins_with("double_jump") and anim.begins_with("double_jump")):
 		otherPlayer.get_node("AnimatedSprite2D").play(anim)
 
+func playerHit(damage: String, x: String, y: String, stun: String) -> void:
+	print("here")
+	player.targetVel.x += int(x)
+	player.targetVel.y += int(y)
+
+	if stun and stun != "0":
+		player.stun.reset(int(stun))
+
 func _ready() -> void:
 	Global.on("inGame", func(x, y):
 		player = playerScene.instantiate()
@@ -22,9 +30,14 @@ func _ready() -> void:
 	Global.on("newPlayer", func(id, x, y):
 		var newPlayer = dummyPlayerScene.instantiate()
 		newPlayer.targetPosition = Vector2(int(x), int(y))
+		newPlayer.position = Vector2(int(x), int(y))
 		newPlayer.name = id
 		$OtherPlayers.add_child(newPlayer))
+	Global.on("playerQuit", func(id):
+		get_node("OtherPlayers/" + id).queue_free())
+
 	Global.on("playerMove", playerMove)
+	Global.on("hit", playerHit)
 
 var lastUpdate = 0
 

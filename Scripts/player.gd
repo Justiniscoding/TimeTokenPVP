@@ -7,6 +7,7 @@ var swordswipe  = load("res://Sound Effects/swordswipe.mp3")
 
 var fireballScene = preload("res://Scenes/fireball.tscn")
 var lightningScene = preload("res://Scenes/lightning.tscn")
+var icicleScene = preload("res://rigid_body_2d.tscn")
 
 var gravity = 800
 var speed = 250
@@ -79,6 +80,17 @@ var weapons = {
 		charge = 7,
 		attack = 24,#24
 		cooldown = 10
+	},
+	short3 = {
+		charge = 5,
+		attack = 15,
+		cooldown = 5,
+		damage = 4
+	},
+	range3 = {
+		charge = 3,
+		attack = 12,
+		cooldown = 30
 	}
 }
 
@@ -111,10 +123,22 @@ func _ready() -> void:
 	if playerNumber == 3:
 		$AnimatedSprite2D.position.x = -4
 		$AnimatedSprite2D.position.y = -16
+		$Weapon/CollisionShape2D.disabled = true
+		$Weapon/CollisionShape2D2.disabled = true
+		$Weapon/CollisionShape2D3.position.x = -17
+		$Weapon/CollisionShape2D3.position.y = 21
+		$Weapon/CollisionShape2D3.rotation = 80
 	else:
 		$AnimatedSprite2D.position.x = 7
 		$AnimatedSprite2D.position.y = 0
-	
+		$Weapon/CollisionShape2D3.position.x = -4.0
+		$Weapon/CollisionShape2D3.position.y = 17.0
+		$Weapon/CollisionShape2D3.rotation = 90.0
+		$Weapon/CollisionShape2D3.scale.x = 1
+		$Weapon/CollisionShape2D3.scale.y = 1
+
+
+
 	
 	# fixes shader param issue
 	$AnimatedSprite2D.material = $AnimatedSprite2D.material.duplicate()
@@ -200,7 +224,13 @@ func fight():
 					var currDurr = 1 if $AnimatedSprite2D.flip_h else -1
 
 					lightning.position = position + Vector2(currDurr * 150, -30)
-
+				if playerNumber == 3:
+					await get_tree().create_timer(0.1).timeout
+					var icicle = icicleScene.instantiate()
+					get_parent().add_child(icicle)
+					var currDurr = 1 if $AnimatedSprite2D.flip_h else -1
+					
+					icicle.position = position + Vector2(currDurr * 8, -20)
 
 	
 	if weaponState == WeaponState.ATTACKING and active.can():
@@ -259,11 +289,15 @@ func _physics_process(delta: float) -> void:
 
 	if direction > 0 and forcedDirection != -1:
 		$AnimatedSprite2D.flip_h = true
-		$AnimatedSprite2D.offset.x = 7
+		if(playerNumber == 3):	
+			$AnimatedSprite2D.position.x = 22
+		$AnimatedSprite2D.offset.x = 5
 		$Weapon.scale.x = -1
 		$Weapon.position.x = 18
 	elif direction < 0 and forcedDirection != 1:
 		$AnimatedSprite2D.flip_h = false
+		if(playerNumber == 3):
+			$AnimatedSprite2D.position.x = -4
 		$AnimatedSprite2D.offset.x = -7
 		$Weapon.scale.x = 1
 		$Weapon.position.x = -4

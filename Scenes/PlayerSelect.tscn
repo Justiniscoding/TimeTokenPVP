@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://qh0iy4ujoyt8" path="res://Art/Player 2.png" id="3_4ph20"]
 [ext_resource type="Texture2D" uid="uid://cstprtkjqu4i0" path="res://Art/Player 1 ALT COLOUR.png" id="5_ygdr5"]
 [ext_resource type="Texture2D" uid="uid://dgiy7xqw1hbs1" path="res://Art/Player 2 ALT COLOUR.png" id="6_fvp1t"]
+[ext_resource type="Texture2D" uid="uid://dawse4oynglyh" path="res://Art/Phineas.png" id="8_fvp1t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gh0eq"]
 shader = ExtResource("1_thimi")
@@ -108,6 +109,22 @@ region = Rect2(0, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
 atlas = ExtResource("3_4ph20")
 region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvp1t"]
+atlas = ExtResource("8_fvp1t")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh0eq"]
+atlas = ExtResource("8_fvp1t")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pntk1"]
+atlas = ExtResource("8_fvp1t")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqanl"]
+atlas = ExtResource("8_fvp1t")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6mvm"]
 atlas = ExtResource("2_5hknh")
@@ -757,6 +774,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fvp1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh0eq")
+}],
+"loop": 1,
+"name": &"idle3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pntk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqanl")
+}],
+"loop": 1,
+"name": &"idle32",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_e6mvm")
 }, {
 "duration": 1.0,
@@ -1257,12 +1296,11 @@ texture = ExtResource("2_4ph20")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=244999504]
 material = SubResource("ShaderMaterial_gh0eq")
-position = Vector2(-83.5, 1.9073486e-06)
+position = Vector2(57.000004, -40)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_pntk1")
-animation = &"idle1"
+animation = &"idle32"
 autoplay = "idle1"
-frame_progress = 0.56323266
 offset = Vector2(-7, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1053819718]
@@ -1271,7 +1309,7 @@ offset = Vector2(-7, 0)
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CharacterBody2D2" unique_id=57906804]
 material = SubResource("ShaderMaterial_gh0eq")
-position = Vector2(134, 3.8146973e-06)
+position = Vector2(83.000015, 0.99999994)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_pntk1")
 animation = &"idle22"

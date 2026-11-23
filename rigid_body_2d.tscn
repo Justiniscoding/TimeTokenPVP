@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://ch0u4o1d1cnb5" path="res://rigid_body_2d.gd" id="1_jiowd"]
 [ext_resource type="Texture2D" uid="uid://l38d6n1waa54" path="res://Art/Phineas' Range ATT.png" id="2_2x7xp"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e1mr1"]
+radius = 4.8692846
+height = 18.438074
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_80516"]
 atlas = ExtResource("2_2x7xp")
 region = Rect2(0, 0, 32, 32)
@@ -58,25 +62,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e1mr1"]
-radius = 4.8692846
-height = 18.438074
-
 [node name="RigidBody2D" type="RigidBody2D" unique_id=181421018]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_jiowd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1051678856]
+position = Vector2(-4.0000005, -4.9999995)
+rotation = -0.6981317
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("CapsuleShape2D_e1mr1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=426060672]
 sprite_frames = SubResource("SpriteFrames_8vehc")
 animation = &"loop"
 frame_progress = 0.98197234
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1448258236]
-position = Vector2(-4.0000005, -4.9999995)
-rotation = -0.6981317
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("CapsuleShape2D_e1mr1")
-
 [node name="Area2D" type="Area2D" parent="." unique_id=56437181]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1427345610]
 position = Vector2(-4.0000005, -4.9999995)

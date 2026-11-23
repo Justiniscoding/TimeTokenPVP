@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dyn3itle8p414"]
 
 [ext_resource type="PackedScene" uid="uid://6b46cgob32hp" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="Script" uid="uid://oho1sh82b3xk" path="res://Scripts/game.gd" id="1_v158k"]
+[ext_resource type="Script" uid="uid://dje4dgo7fq3th" path="res://Scripts/game.gd" id="1_v158k"]
 [ext_resource type="AudioStream" uid="uid://b25o731vuv7wv" path="res://Sound Effects/lumora_studios-pixel-jump-319167.mp3" id="1_wowpa"]
-[ext_resource type="Script" uid="uid://bbldk7smspsne" path="res://Scenes/camera_2d.gd" id="3_1l0tm"]
+[ext_resource type="Script" uid="uid://cndcvi7f5cpmh" path="res://Scenes/camera_2d.gd" id="3_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://qhy6wyfecg4x" path="res://Art/Boris Health Bar.png" id="3_rku1e"]
 [ext_resource type="PackedScene" uid="uid://b88qmaxe3ua7i" path="res://Scenes/TimeToken.tscn" id="3_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://boqcnefuof047" path="res://Art/Renee Health Bar.png" id="4_o5yvi"]
@@ -149,17 +149,17 @@ sprite_frames = SubResource("SpriteFrames_4042a")
 autoplay = "default"
 frame_progress = 0.37473872
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1830370362]
+[node name="Map" type="StaticBody2D" parent="." unique_id=1830370362]
 collision_layer = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1190709685]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map" unique_id=1190709685]
 polygon = PackedVector2Array(342, 65, 340, 63, 303, 63, 301, 65, 273, 65, 271, 66, 263, 63, 241, 63, 237, 66, 234, 64, 231, 64, 229, 66, 225, 66, 223, 64, 218, 64, 217, 65, 215, 63, 214, 63, 213, 64, 210, 64, 209, 63, 206, 63, 204, 64, 202, 66, 201, 66, 199, 64, 187, 64, 186, 63, 184, 63, 183, 64, 175, 64, 174, 65, 169, 65, 168, 64, 165, 64, 164, 63, 125, 63, 123, 65, 121, 65, 120, 64, 118, 64, 117, 63, 113, 63, 112, 64, 111, 63, 98, 63, 97, 64, 94, 64, 93, 63, 88, 63, 86, 63, 74, 63, 73, 64, 68, 64, 67, 63, 56, 63, 55, 64, 51, 64, 50, 65, 37, 65, 36, 64, 32, 64, 31, 63, 29, 63, 28, 64, 27, 64, 26, 63, 22, 63, 19, 66, 17, 66, 15, 64, 10, 64, 8, 64, 7, 63, 6, 63, 5, 64, 2, 64, 1, 63, -2, 63, -4, 64, -6, 66, -9, 66, -11, 64, -15, 64, -16, 65, -19, 65, -20, 66, -32, 66, -34, 67, -35, 68, -50, 68, -52, 70, -55, 70, -56, 69, -59, 69, -60, 68, -70, 68, -71, 67, -73, 66, -75, 65, -83, 65, -84, 64, -88, 64, -90, 66, -95, 66, -97, 66, -101, 66, -104, 63, -106, 63, -107, 64, -108, 66, -110, 66, -111, 65, -114, 65, -115, 64, -118, 64, -119, 66, -125, 66, -127, 64, -134, 64, -135, 63, -136, 63, -137, 64, -140, 64, -141, 63, -144, 63, -146, 64, -148, 66, -170, 66, -172, 64, -176, 64, -177, 63, -180, 63, -181, 64, -184, 64, -185, 63, -203, 63, -204, 64, -207, 64, -209, 65, -210, 66, -211, 67, -212, 68, -221, 68, -222, 66, -223, 65, -225, 65, -226, 66, -227, 67, -230, 67, -231, 66, -239, 66, -240, 65, -241, 64, -246, 64, -248, 64, -249, 63, -250, 63, -251, 64, -254, 64, -255, 63, -258, 63, -260, 64, -261, 65, -262, 66, -265, 66, -266, 65, -268, 64, -271, 64, -273, 66, -276, 66, -277, 65, -279, 65, -280, 66, -283, 66, -284, 65, -287, 65, -288, 64, -290, 64, -295, 69, -295, 72, -296, 72, -296, 73, -297, 73, -287, 162, 339, 154)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=2050530812]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Map" unique_id=2050530812]
 position = Vector2(-1, -1)
 polygon = PackedVector2Array(-223, 0, -213, -2, -203, -2, -187, 0, -182, 1, -178, 0, -169, 0, -163, 1, -161, 1, -160, 0, -158, 0, -156, -2, -154, -2, -153, -3, -150, -3, -148, -1, -145, -1, -143, 0, -140, 1, -139, 2, -128, 2, -125, 5, -123, 7, -123, 10, -126, 19, -133, 19, -139, 15, -143, 14, -148, 16, -153, 16, -156, 14, -162, 13, -173, 13, -175, 14, -179, 12, -185, 13, -196, 13, -198, 15, -202, 15, -205, 14, -212, 14, -213, 16, -221, 16, -226, 13, -228, 12, -232, 12, -230, 8, -228, 6)
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1020512744]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Map" unique_id=1020512744]
 polygon = PackedVector2Array(181, 8, 186, 3, 188, 2, 196, 2, 197, 1, 199, 1, 200, 0, 202, 0, 205, -3, 207, -3, 210, -2, 211, -1, 238, -1, 241, 0, 246, 1, 249, 1, 250, 0, 259, 0, 260, -1, 275, -1, 279, 0, 283, 1, 285, 2, 287, 4, 288, 4, 290, 6, 290, 7, 292, 12, 291, 15, 288, 15, 285, 12, 284, 13, 247, 13, 239, 12, 233, 11, 211, 11, 201, 11, 201, 12, 192, 12, 192, 13, 184, 13)
 
 [node name="TimeToken" parent="." unique_id=15822373 instance=ExtResource("3_wrm1d")]

@@ -5,6 +5,8 @@ signal hpChange(player, amount)
 var p1hp = 100
 var p2hp = 100
 
+var shootDirection = 1
+
 var playerNumber
 var player2Number
 

@@ -227,8 +227,11 @@ func fight():
 				if playerNumber == 3:
 					await get_tree().create_timer(0.1).timeout
 					var icicle = icicleScene.instantiate()
-					get_parent().add_child(icicle)
 					var currDurr = 1 if $AnimatedSprite2D.flip_h else -1
+					Global.shootDirection = -currDurr
+					get_parent().add_child(icicle)
+					
+
 					
 					icicle.position = position + Vector2(currDurr * 8, -20)
 

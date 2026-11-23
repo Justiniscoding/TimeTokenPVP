@@ -86,6 +86,7 @@ var targetVel := Vector2.ZERO
 
 var weaponState = WeaponState.READY
 var didAttack = false
+var isLanding = false
 
 var forcedDirection = 0
 
@@ -116,8 +117,15 @@ func _ready() -> void:
 
 	set_physics_process(false)
 	
+	$"Intro Top".visible = true
+	$"Intro Base".visible = true
+
 	$"Intro Top".play(pnum)
 	$"Intro Base".play("default")
+
+	# to fix landing animation
+	$AnimatedSprite2D.connect("animation_finished", func ():
+		isLanding = false)
 
 	await $"Intro Top".animation_finished
 
@@ -228,12 +236,6 @@ func _physics_process(delta: float) -> void:
 	active.update(delta)
 	stun.update(delta)
 	
-	#if(name == "Player") :
-	#	modulate = Color8(100, 100, 255)
-	#else:
-	#	modulate = Color8(255, 100, 100, 255)
-
-
 	if stun.can():
 		fight()
 
@@ -245,17 +247,21 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		direction *= 0.75
 
+		if $"Land Cast".is_colliding() and velocity.y > 200 and not isLanding:
+			$AnimatedSprite2D.play("land" + pnum + addToSpriteName)
+			isLanding = true
+
 	if currentAttack == Attacks.NONE or weaponState == WeaponState.READY or weaponState == WeaponState.COOLDOWN:
 		forcedDirection = 0
 
 	targetVel = lerp(targetVel, Vector2.ZERO, 0.2)
 
 	if direction != 0:
-		if is_on_floor() and currentAttack == Attacks.NONE and weaponState == WeaponState.READY and not didAttack:
+		if is_on_floor() and currentAttack == Attacks.NONE and weaponState == WeaponState.READY and not didAttack and not isLanding:
 			$AnimatedSprite2D.play("run" + pnum + addToSpriteName)
 		velocity.x = lerp(velocity.x, direction, 0.15)
 	else:
-		if is_on_floor() and currentAttack == Attacks.NONE and weaponState == WeaponState.READY and not didAttack:
+		if is_on_floor() and currentAttack == Attacks.NONE and weaponState == WeaponState.READY and not didAttack and not isLanding:
 			$AnimatedSprite2D.play("idle" + pnum + addToSpriteName)
 		velocity.x = lerp(velocity.x, 0.0, 0.15)
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cyalsijkscv3w"]
 
-[ext_resource type="Script" uid="uid://ch0u4o1d1cnb5" path="res://rigid_body_2d.gd" id="1_jiowd"]
+[ext_resource type="Script" uid="uid://14fl3dip6ny7" path="res://rigid_body_2d.gd" id="1_jiowd"]
 [ext_resource type="Texture2D" uid="uid://l38d6n1waa54" path="res://Art/Phineas' Range ATT.png" id="2_2x7xp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e1mr1"]

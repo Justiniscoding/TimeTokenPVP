@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		$CharacterBody2D2/AnimatedSprite2D2.position.x = newX2
 		$CharacterBody2D2/AnimatedSprite2D2.position.y = newY
 		otherPlayerNum = 3
-	elif(abs(playerNum) % 2 == 0):
+	elif(abs(playerNum) % 3 == 1):
 		$CharacterBody2D2/AnimatedSprite2D2.position.x = ogX
 		$CharacterBody2D2/AnimatedSprite2D2.position.y = ogY
 		otherPlayerNum = 2
@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 		otherPlayer2Num = 3	
 		$CharacterBody2D/AnimatedSprite2D2.position.x = -newX
 		$CharacterBody2D/AnimatedSprite2D2.position.y = newY
-	elif(abs(player2Num) % 2 == 0):
+	elif(abs(player2Num) % 3 == 1):
 		otherPlayer2Num = 2
 		$CharacterBody2D/AnimatedSprite2D2.position.x = -ogX
 		$CharacterBody2D/AnimatedSprite2D2.position.y = ogY

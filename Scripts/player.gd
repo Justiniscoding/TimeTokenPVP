@@ -94,7 +94,7 @@ var inNum = 1
 
 
 func _ready() -> void:
-	if(name == "Player") :
+	if name == "Player" :
 		inputNum = str(1)
 		inNum = 1
 		print(Global.playerNumber)
@@ -113,9 +113,18 @@ func _ready() -> void:
 	$AnimatedSprite2D.material = $AnimatedSprite2D.material.duplicate()
 
 	$AnimatedSprite2D.play("idle" + pnum + addToSpriteName)
+
+	set_physics_process(false)
 	
-	
-	
+	$"Intro Top".play(pnum)
+	$"Intro Base".play("default")
+
+	await $"Intro Top".animation_finished
+
+	$"Intro Top".queue_free()
+	$"Intro Base".queue_free()
+
+	set_physics_process(true)
 
 
 func getCollider():

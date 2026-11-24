@@ -53,8 +53,12 @@ func _physics_process(delta: float) -> void:
 				playerNumber = 1
 			else:				
 				playerNumber = 2
-			Global.remove_hp(playerNumber, 3)
-			body.targetVel.x = 400 * direction
+
+			if Global.isMultiplayer:
+				Global.emit("hitPlayer", body.get_parent().name, 5, 400 * direction, 0, 0)
+			else:
+				Global.remove_hp(playerNumber, 3)
+				body.targetVel.x = 400 * direction
 
 		$AnimatedSprite2D.play("explode")
 		if middleAudio:

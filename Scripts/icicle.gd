@@ -30,21 +30,18 @@ func _physics_process(delta: float) -> void:
 		if body == self:
 			continue
 
-		var playerNumber = 0
-		if body.name == "Player":
-			playerNumber = 1
-			didStun = true
-			Global.remove_hp(playerNumber, 3)
-			body.stun.reset(45)
-		elif body.name == "Player2":  
-			playerNumber = 2
-			didStun = true
-			Global.remove_hp(playerNumber, 3)
-			body.stun.reset(45)
-		elif body.name == "Map":
-			print("hit ground")
-			queue_free()
+		if body.name.begins_with("Player"):
+			var playerNumber = 1
 
+			if body.name == "Player2":
+				playerNumber = 2
+
+			didStun = true
+
+			if Global.isMultiplayer:
+				Global.emit("hitPlayer", body.get_parent().name, 3, 0, 0, 45)
+			else:
+				Global.remove_hp(playerNumber, 3)
+				body.stun.reset(45)
 
 		queue_free()
-		break                  

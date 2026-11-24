@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dtu1iag02j6p3"]
+
+[ext_resource type="Script" uid="uid://37wnrt51c8e2" path="res://Scripts/multiplayer_game.gd" id="1_iqufw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xs5hf"]
+size = Vector2(455.5, 20)
+
+[node name="MultiplayerGame" type="Node2D" unique_id=1044783140]
+script = ExtResource("1_iqufw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1277667540]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=538302176]
+position = Vector2(221.25, 240)
+shape = SubResource("RectangleShape2D_xs5hf")
+
+[node name="OtherPlayers" type="Node2D" parent="." unique_id=1547034198]

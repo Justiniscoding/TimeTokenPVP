@@ -4,6 +4,7 @@ var playerNumber: int = 1
 
 var hammersmash = load("res://Sound Effects/hammersmash.mp3")
 var swordswipe  = load("res://Sound Effects/swordswipe.mp3")
+var jumpsound  = load("res://Sound Effects/lumora_studios-pixel-jump-319167.mp3")
 
 var fireballScene = preload("res://Scenes/fireball.tscn")
 var lightningScene = preload("res://Scenes/lightning.tscn")
@@ -46,6 +47,8 @@ enum Attacks {
 	SHORT,
 	RANGED
 }
+
+var facing = 1
 
 var hasTime = false
 
@@ -211,11 +214,13 @@ func fight():
 			if not player == null and not currentAttack == Attacks.NONE and not didAttack:
 				didAttack = true
 
-				Global.remove_hp(1 if inNum == 2 else 2, weapons["short" + pnum].damage)
-				
-
-				player.targetVel.y = -1500
-				player.targetVel.x = 1500 if $AnimatedSprite2D.flip_h else -1500
+				if Global.isMultiplayer:
+					var id = player.get_parent().name
+					Global.emit("hitPlayer", id, 3, 1500 if $AnimatedSprite2D.flip_h else -1500, -1500, 0)
+				else:
+					Global.remove_hp(1 if inNum == 2 else 2, weapons["short" + pnum].damage)
+					player.targetVel.y = -1500
+					player.targetVel.x = 1500 if $AnimatedSprite2D.flip_h else -1500
 		else:
 			if not didAttack:
 				didAttack = true
@@ -305,12 +310,14 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = true
 		$Weapon.scale.x = -1
 		$Weapon.position.x = 18
+		facing = 1
 		if playerNumber == 3:
 			$AnimatedSprite2D.position.x = 22
 		$AnimatedSprite2D.offset.x = 5
 	elif direction < 0 and forcedDirection != 1:
 		$AnimatedSprite2D.flip_h = false
 		$AnimatedSprite2D.offset.x = -7
+		facing = -1
 		if playerNumber == 3:
 			$AnimatedSprite2D.position.x = -4
 		$Weapon.scale.x = 1
@@ -318,17 +325,24 @@ func _physics_process(delta: float) -> void:
 
 
 	if Input.is_action_just_pressed("up" + inputNum):
+		if is_on_floor() or canDoubleJump:
+			var audio = AudioStreamPlayer.new()
+			audio.stream = jumpsound
+			add_child(audio)
+			audio.play()
+			audio.connect("finished", func():
+				audio.queue_free())
+
 		if is_on_floor():
 			isJumping = true
 			$AnimatedSprite2D.play("jump" + pnum + addToSpriteName)
 			canDoubleJump = true
 			velocity.y = jump
-			$"../AudioStreamPlayer2D".play()
 		elif canDoubleJump:
 			$AnimatedSprite2D.play("double_jump" + pnum + addToSpriteName)
 			canDoubleJump = false
 			velocity.y = doubleJumpSize
-			$"../AudioStreamPlayer2D".play()
+
 	if not is_on_floor() and Input.is_action_just_released("up" + inputNum) and canDoubleJump:
 		velocity.y *= 0.5
 

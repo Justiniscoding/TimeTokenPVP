@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://6b46cgob32hp" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://oho1sh82b3xk" path="res://Scripts/game.gd" id="1_v158k"]
-[ext_resource type="AudioStream" uid="uid://b25o731vuv7wv" path="res://Sound Effects/lumora_studios-pixel-jump-319167.mp3" id="1_wowpa"]
 [ext_resource type="Script" uid="uid://bbldk7smspsne" path="res://Scenes/camera_2d.gd" id="3_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://qhy6wyfecg4x" path="res://Art/Boris Health Bar.png" id="3_rku1e"]
 [ext_resource type="PackedScene" uid="uid://b88qmaxe3ua7i" path="res://Scenes/TimeToken.tscn" id="3_wrm1d"]
@@ -88,6 +87,7 @@ script = ExtResource("1_v158k")
 [node name="Time Demon" type="AnimatedSprite2D" parent="." unique_id=949820943]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 2
+position = Vector2(-61, 102)
 sprite_frames = SubResource("SpriteFrames_xs5hf")
 autoplay = "default"
 frame_progress = 0.14964102
@@ -116,16 +116,12 @@ texture_progress = ExtResource("6_1l0tm")
 texture_progress_offset = Vector2(13, 13)
 metadata/_edit_use_anchors_ = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1348945278]
-position = Vector2(93, 3)
-stream = ExtResource("1_wowpa")
-
 [node name="Player" parent="." unique_id=297062209 instance=ExtResource("1_ebmjs")]
 modulate = Color(0.9490196, 0.9490196, 0.9490196, 1)
 position = Vector2(230, -19)
 
 [node name="Player2" parent="." unique_id=1520999625 instance=ExtResource("1_ebmjs")]
-position = Vector2(-191, -21)
+position = Vector2(-293, 6)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1575957073 node_paths=PackedStringArray("player1", "player2")]
 position = Vector2(56, -7)

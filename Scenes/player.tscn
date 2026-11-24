@@ -12,6 +12,10 @@ size = Vector2(13.5, 28)
 radius = 7.1674166
 height = 19.970163
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7umv1"]
+radius = 7.0
+height = 42.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vgqql"]
 shader = ExtResource("2_6t5aa")
 shader_parameter/enabled = false
@@ -164,26 +168,37 @@ shape = SubResource("RectangleShape2D_xs5hf")
 [node name="Weapon" type="Area2D" parent="." unique_id=1768816585]
 position = Vector2(-4, -16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon" unique_id=1330458432]
+[node name="Short Melee 1" type="CollisionShape2D" parent="Weapon" unique_id=1330458432]
 position = Vector2(-7, 8)
 rotation = 2.443461
 shape = SubResource("CapsuleShape2D_xs5hf")
+disabled = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Weapon" unique_id=319940285]
+[node name="Short Melee 2" type="CollisionShape2D" parent="Weapon" unique_id=319940285]
 position = Vector2(1.9999981, 6)
 rotation = 2.7925267
 shape = SubResource("CapsuleShape2D_xs5hf")
+disabled = true
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Weapon" unique_id=1476961588]
+[node name="Short Melee 3" type="CollisionShape2D" parent="Weapon" unique_id=1476961588]
 position = Vector2(-4.0000005, 17)
 rotation = 1.7453293
 shape = SubResource("CapsuleShape2D_xs5hf")
+disabled = true
+
+[node name="Spear" type="CollisionShape2D" parent="Weapon" unique_id=21002776]
+position = Vector2(-8, 19)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7umv1")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=303932097]
 material = SubResource("ShaderMaterial_vgqql")
-position = Vector2(7, 0)
+position = Vector2(-4, -16)
 sprite_frames = ExtResource("3_vgqql")
-animation = &"land32"
+animation = &"short3"
+frame = 4
+frame_progress = 1.0
 offset = Vector2(-7, 0)
 
 [node name="Intro Base" type="AnimatedSprite2D" parent="." unique_id=324381610]

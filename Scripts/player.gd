@@ -124,19 +124,15 @@ func _ready() -> void:
 	if playerNumber == 3:
 		$AnimatedSprite2D.position.x = -4
 		$AnimatedSprite2D.position.y = -16
-		$Weapon/CollisionShape2D.disabled = true
-		$Weapon/CollisionShape2D2.disabled = true
-		$Weapon/CollisionShape2D3.position.x = -17
-		$Weapon/CollisionShape2D3.position.y = 21
-		$Weapon/CollisionShape2D3.rotation = 80
+
+		$"Weapon/Spear".disabled = false
 	else:
 		$AnimatedSprite2D.position.x = 7
 		$AnimatedSprite2D.position.y = 0
-		$Weapon/CollisionShape2D3.position.x = -4.0
-		$Weapon/CollisionShape2D3.position.y = 17.0
-		$Weapon/CollisionShape2D3.rotation = 90.0
-		$Weapon/CollisionShape2D3.scale.x = 1
-		$Weapon/CollisionShape2D3.scale.y = 1
+
+		$"Weapon/Short Melee 1".disabled = false
+		$"Weapon/Short Melee 2".disabled = false
+		$"Weapon/Short Melee 3".disabled = false
 	
 	# fixes shader param issue
 	$AnimatedSprite2D.material = $AnimatedSprite2D.material.duplicate()

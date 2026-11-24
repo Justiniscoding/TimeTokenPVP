@@ -6,7 +6,7 @@ var p1hp = 100
 var p2hp = 100
 
 var playerNumber = 1
-var player2Number = 2
+var player2Number = 3
 
 func remove_hp(playerNum: int, amount: int) -> void:
 	if playerNum == 1:

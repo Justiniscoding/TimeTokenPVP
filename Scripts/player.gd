@@ -7,6 +7,7 @@ var swordswipe  = load("res://Sound Effects/swordswipe.mp3")
 
 var fireballScene = preload("res://Scenes/fireball.tscn")
 var lightningScene = preload("res://Scenes/lightning.tscn")
+var icicleScene = preload("res://Scenes/icicle.tscn")
 
 var gravity = 800
 var speed = 250
@@ -77,8 +78,19 @@ var weapons = {
 	},
 	range1 = {
 		charge = 7,
-		attack = 24,#24
+		attack = 24,
 		cooldown = 10
+	},
+	short3 = {
+		charge = 5,
+		attack = 15,
+		cooldown = 5,
+		damage = 4
+	},
+	range3 = {
+		charge = 3,
+		attack = 12,
+		cooldown = 30
 	}
 }
 
@@ -109,6 +121,22 @@ func _ready() -> void:
 	
 	pnum = str(playerNumber)
 	
+	if playerNumber == 3:
+		$AnimatedSprite2D.position.x = -4
+		$AnimatedSprite2D.position.y = -16
+		$Weapon/CollisionShape2D.disabled = true
+		$Weapon/CollisionShape2D2.disabled = true
+		$Weapon/CollisionShape2D3.position.x = -17
+		$Weapon/CollisionShape2D3.position.y = 21
+		$Weapon/CollisionShape2D3.rotation = 80
+	else:
+		$AnimatedSprite2D.position.x = 7
+		$AnimatedSprite2D.position.y = 0
+		$Weapon/CollisionShape2D3.position.x = -4.0
+		$Weapon/CollisionShape2D3.position.y = 17.0
+		$Weapon/CollisionShape2D3.rotation = 90.0
+		$Weapon/CollisionShape2D3.scale.x = 1
+		$Weapon/CollisionShape2D3.scale.y = 1
 	
 	# fixes shader param issue
 	$AnimatedSprite2D.material = $AnimatedSprite2D.material.duplicate()
@@ -170,6 +198,7 @@ func fight():
 			if playerNumber == 1:
 				audio.stream = swordswipe
 				audio.volume_db = 5
+
 			else:
 				audio.stream = hammersmash
 			add_child(audio)
@@ -203,13 +232,24 @@ func fight():
 					fireball.position = position + Vector2(currDurr * 20, -10)
 
 					fireball.direction = currDurr
-				if playerNumber == 2:
+				elif playerNumber == 2:
 					var lightning = lightningScene.instantiate()
 					get_parent().add_child(lightning)
 
 					var currDurr = 1 if $AnimatedSprite2D.flip_h else -1
 
 					lightning.position = position + Vector2(currDurr * 150, -30)
+				elif playerNumber == 3:
+					await get_tree().create_timer(0.1).timeout
+					var icicle = icicleScene.instantiate()
+					icicle.shootDirection = -1 if $AnimatedSprite2D.flip_h else 1
+
+					icicle.position = position + Vector2(icicle.shootDirection * -8, -20)
+
+					if icicle.shootDirection < 0:
+						icicle.position.x += 20
+
+					get_parent().add_child(icicle)
 
 
 	
@@ -267,12 +307,16 @@ func _physics_process(delta: float) -> void:
 
 	if direction > 0 and forcedDirection != -1:
 		$AnimatedSprite2D.flip_h = true
-		$AnimatedSprite2D.offset.x = 7
 		$Weapon.scale.x = -1
 		$Weapon.position.x = 18
+		if playerNumber == 3:
+			$AnimatedSprite2D.position.x = 22
+		$AnimatedSprite2D.offset.x = 5
 	elif direction < 0 and forcedDirection != 1:
 		$AnimatedSprite2D.flip_h = false
 		$AnimatedSprite2D.offset.x = -7
+		if playerNumber == 3:
+			$AnimatedSprite2D.position.x = -4
 		$Weapon.scale.x = 1
 		$Weapon.position.x = -4
 

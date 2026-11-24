@@ -4,10 +4,12 @@ var playerNum = 1
 var player2Num = 2
 var otherPlayerNum
 var otherPlayer2Num
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
+var ogX = 83.5
+var ogY = 0
+var newX = 109
+var newY = -40
+var newX2 = 57
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -20,18 +22,34 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("right2"):
 		player2Num += 1
 	
-	if(abs(playerNum) % 2 == 0):
+	if abs(playerNum) % 3 == 0:
+		$"Player 1".position.x = newX2
+		$"Player 1".position.y = newY
+		otherPlayerNum = 3
+	elif abs(playerNum) % 3 == 1:
+		$"Player 1".position.x = ogX
+		$"Player 1".position.y = ogY
 		otherPlayerNum = 2
 	else:
 		otherPlayerNum = 1
-		
-	if(abs(player2Num) % 2 == 0):
+		$"Player 1".position.x = ogX
+		$"Player 1".position.y = ogY
+
+	if abs(player2Num) % 3 == 0:
+		otherPlayer2Num = 3	
+		$"Player 2".position.x = -newX
+		$"Player 2".position.y = newY
+	elif abs(player2Num) % 3 == 1:
 		otherPlayer2Num = 2
+		$"Player 2".position.x = -ogX
+		$"Player 2".position.y = ogY
 	else:
 		otherPlayer2Num = 1
+		$"Player 2".position.x = -ogX
+		$"Player 2".position.y = ogY
 		
-	$CharacterBody2D/AnimatedSprite2D2.play("idle" + str(otherPlayer2Num) + "2")
-	$CharacterBody2D2/AnimatedSprite2D2.play("idle" + str(otherPlayerNum))	
+	$"Player 2".play("idle" + str(otherPlayer2Num) + "2")
+	$"Player 1".play("idle" + str(otherPlayerNum))	
 	
 	if Input.is_action_just_pressed("Set1"):
 		Global.playerNumber = otherPlayerNum

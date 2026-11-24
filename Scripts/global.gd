@@ -8,7 +8,7 @@ var p2hp = 100
 var playerNumber = 1
 var player2Number = 3
 
-var isMultiplayer = true
+var isMultiplayer = false
 var socket: WebSocketPeer
 
 func remove_hp(playerNum: int, amount: int) -> void:

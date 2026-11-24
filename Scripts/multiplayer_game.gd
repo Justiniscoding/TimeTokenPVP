@@ -23,6 +23,9 @@ func playerHit(damage: String, x: String, y: String, stun: String) -> void:
 		player.stun.reset(int(stun))
 
 func _ready() -> void:
+	Global.isMultiplayer = true
+	Global.init_multiplayer()
+
 	Global.on("inGame", func(x, y):
 		player = playerScene.instantiate()
 		player.position = Vector2(int(x), int(y))

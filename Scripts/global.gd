@@ -20,7 +20,6 @@ func remove_hp(playerNum: int, amount: int) -> void:
 
 func _ready() -> void:
 	set_process(false)
-	init_multiplayer()
 
 func init_multiplayer():
 	isMultiplayer = true
@@ -30,7 +29,7 @@ func init_multiplayer():
 	var wsUrl = "ws://localhost:8080"
 
 	if OS.has_feature("web"):
-		wsUrl = ""
+		wsUrl = "ws://localhost:8080"
 
 	var error = socket.connect_to_url(wsUrl, TLSOptions.client_unsafe())
 

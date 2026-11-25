@@ -194,9 +194,11 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=303932097]
 material = SubResource("ShaderMaterial_vgqql")
-position = Vector2(-4, -16)
+position = Vector2(2, -0.5)
 sprite_frames = ExtResource("3_vgqql")
-animation = &"jump32"
+animation = &"range4"
+frame = 14
+frame_progress = 1.0
 offset = Vector2(-7, 0)
 
 [node name="Intro Base" type="AnimatedSprite2D" parent="." unique_id=324381610]

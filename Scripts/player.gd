@@ -9,14 +9,14 @@ var jumpsound  = load("res://Sound Effects/lumora_studios-pixel-jump-319167.mp3"
 var fireballScene = preload("res://Scenes/fireball.tscn")
 var lightningScene = preload("res://Scenes/lightning.tscn")
 var icicleScene = preload("res://Scenes/icicle.tscn")
+var arrowScene = preload("res://Scenes/crossbow_arrow.tscn")
 
 var gravity = 800
 var speed = 250
 var jump = -400
 var doubleJumpSize = jump * 0.75
 
-var addToSpriteName
-
+var addToSpriteName = ""
 
 var canDoubleJump = false
 
@@ -94,6 +94,18 @@ var weapons = {
 		charge = 3,
 		attack = 12,
 		cooldown = 30
+	},
+	short4 = {
+		charge = 15,
+		attack = 15,
+		cooldown = 10,
+		damage = 4
+	},
+	range4 = {
+		charge = 14.75,
+		attack = 2.5,
+		cooldown = 50,
+		damage = 8
 	}
 }
 
@@ -113,14 +125,13 @@ func _ready() -> void:
 	if name == "Player" :
 		inputNum = str(1)
 		inNum = 1
-		print(Global.playerNumber)
 		playerNumber = Global.playerNumber
-		addToSpriteName = ""
 	else:
 		inputNum = str(2)
 		inNum = 2
 		playerNumber = Global.player2Number
-		addToSpriteName = "2"
+		if playerNumber != 4:
+			addToSpriteName = "2"
 	
 	pnum = str(playerNumber)
 	
@@ -130,8 +141,12 @@ func _ready() -> void:
 
 		$"Weapon/Spear".disabled = false
 	else:
-		$AnimatedSprite2D.position.x = 7
-		$AnimatedSprite2D.position.y = 0
+		if playerNumber == 4:
+			$AnimatedSprite2D.position.x = 2
+			$AnimatedSprite2D.position.y = -0.5
+		else:
+			$AnimatedSprite2D.position.x = 7
+			$AnimatedSprite2D.position.y = 0
 
 		$"Weapon/Short Melee 1".disabled = false
 		$"Weapon/Short Melee 2".disabled = false
@@ -154,7 +169,7 @@ func _ready() -> void:
 	$AnimatedSprite2D.connect("animation_finished", func ():
 		isLanding = false)
 
-	await $"Intro Top".animation_finished
+	await $"Intro Base".animation_finished
 
 	$"Intro Top".queue_free()
 	$"Intro Base".queue_free()
@@ -179,7 +194,6 @@ func fight():
 			currentAttack = Attacks.SHORT
 			weaponState = WeaponState.CHARGING
 			forcedDirection = 1 if $AnimatedSprite2D.flip_h else -1
-			print("charging")
 
 		if Input.is_action_just_pressed("range" + inputNum):
 			$AnimatedSprite2D.play("range" + pnum + addToSpriteName)
@@ -190,7 +204,6 @@ func fight():
 	
 	if weaponState == WeaponState.CHARGING and startup.can():
 		weaponState = WeaponState.ATTACKING
-		print("attacking")
 		if currentAttack == Attacks.SHORT:
 			active.reset(weapons["short" + pnum].attack)
 			var audio = AudioStreamPlayer.new()
@@ -228,22 +241,18 @@ func fight():
 					var fireball = fireballScene.instantiate()
 					get_parent().add_child(fireball)
 
-					var currDurr = 1 if $AnimatedSprite2D.flip_h else -1
+					fireball.position = position + Vector2(facing * 20, -10)
 
-					fireball.position = position + Vector2(currDurr * 20, -10)
-
-					fireball.direction = currDurr
+					fireball.direction = facing
 				elif playerNumber == 2:
 					var lightning = lightningScene.instantiate()
 					get_parent().add_child(lightning)
 
-					var currDurr = 1 if $AnimatedSprite2D.flip_h else -1
-
-					lightning.position = position + Vector2(currDurr * 150, -30)
+					lightning.position = position + Vector2(facing * 150, -30)
 				elif playerNumber == 3:
 					await get_tree().create_timer(0.1).timeout
 					var icicle = icicleScene.instantiate()
-					icicle.shootDirection = -1 if $AnimatedSprite2D.flip_h else 1
+					icicle.shootDirection = -facing
 
 					icicle.position = position + Vector2(icicle.shootDirection * -8, -20)
 
@@ -251,12 +260,21 @@ func fight():
 						icicle.position.x += 20
 
 					get_parent().add_child(icicle)
+				elif playerNumber == 4:
+					var arrow = arrowScene.instantiate()
+					arrow.direction = facing
+					arrow.damage = weapons["range4"].damage
 
+					get_parent().add_child(arrow)
+
+					arrow.position = position + Vector2(facing * 25, -4.5)
+
+					if facing == 1:
+						arrow.position.x += 17
 
 	
 	if weaponState == WeaponState.ATTACKING and active.can():
 		didAttack = false
-		print("on cooldown")
 		weaponState = WeaponState.COOLDOWN
 		if currentAttack == Attacks.SHORT:
 			end.reset(weapons["short" + pnum].cooldown)
@@ -264,7 +282,6 @@ func fight():
 			end.reset(weapons["range" + pnum].cooldown)
 	
 	if weaponState == WeaponState.COOLDOWN and end.can():
-		print("cooldown over")
 		weaponState = WeaponState.READY
 		currentAttack = Attacks.NONE
 
@@ -276,6 +293,11 @@ func _physics_process(delta: float) -> void:
 	end.update(delta)
 	active.update(delta)
 	stun.update(delta)
+
+	if Input.is_action_pressed("Set1"):
+		Engine.time_scale = 0.1
+	else:
+		Engine.time_scale = 1
 	
 	if stun.can():
 		fight()
@@ -311,9 +333,15 @@ func _physics_process(delta: float) -> void:
 		$Weapon.scale.x = -1
 		$Weapon.position.x = 18
 		facing = 1
+
 		if playerNumber == 3:
 			$AnimatedSprite2D.position.x = 22
-		$AnimatedSprite2D.offset.x = 5
+
+		if playerNumber == 4:
+			$AnimatedSprite2D.offset.x = 15
+		else:
+			$AnimatedSprite2D.offset.x = 5
+
 	elif direction < 0 and forcedDirection != 1:
 		$AnimatedSprite2D.flip_h = false
 		$AnimatedSprite2D.offset.x = -7

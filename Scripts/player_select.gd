@@ -8,7 +8,7 @@ const p2Origin = Vector2(195, 119)
 
 const gap = Vector2(48, 51)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left1"):
 		playerNum -= 1
 	if Input.is_action_just_pressed("right1"):

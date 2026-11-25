@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://uyypc014irfw"]
+
+[ext_resource type="Script" uid="uid://bbjgti6dqvc38" path="res://Scripts/crossbow_arrow.gd" id="1_eppud"]
+[ext_resource type="Texture2D" uid="uid://uatomrcn7k7e" path="res://Art/Harambe.png" id="2_2o6fp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xs5hf"]
+radius = 2.0
+height = 24.0
+
+[node name="Crossbow Arrow" type="Area2D" unique_id=1719590088]
+collision_mask = 3
+script = ExtResource("1_eppud")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=854037354]
+texture = ExtResource("2_2o6fp")
+region_enabled = true
+region_rect = Rect2(250, 47, 8, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1171395718]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xs5hf")

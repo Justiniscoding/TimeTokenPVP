@@ -16,3 +16,16 @@ position = Vector2(221.25, 240)
 shape = SubResource("RectangleShape2D_xs5hf")
 
 [node name="OtherPlayers" type="Node2D" parent="." unique_id=1547034198]
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1794215535]
+offset_right = 103.0
+offset_bottom = 31.0
+placeholder_text = "ip address"
+
+[node name="Button" type="Button" parent="." unique_id=1686173105]
+offset_left = 105.0
+offset_top = 4.0
+offset_right = 140.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 7
+text = "connect"

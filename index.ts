@@ -37,6 +37,7 @@ interface PlayerPositions {
 	[key: string]: {
 		x: number;
 		y: number;
+		playerNumber: number;
 	};
 }
 
@@ -62,19 +63,20 @@ const server = Bun.serve({
 
 			const playerX = Math.floor(Math.random() * 250);
 			const playerY = -50;
+			const playerNumber = Math.floor(Math.random() * 4) + 1;
 
 			clients.set(ws.data.id, ws);
 
-			emit(ws, "inGame", playerX, playerY);
+			emit(ws, "inGame", playerNumber, playerX, playerY);
 
 			for (let playerId in players) {
-				emit(ws, "newPlayer", playerId, players[playerId]?.x, players[playerId]?.y,);
+				emit(ws, "newPlayer", playerId, players[playerId]?.playerNumber, players[playerId]?.x, players[playerId]?.y,);
 			}
 
-			players[ws.data.id] = { x: playerX, y: playerY };
+			players[ws.data.id] = { x: playerX, y: playerY, playerNumber };
 
 			ws.subscribe("game");
-			publish(ws, "game", "newPlayer", ws.data.id, playerX, playerY);
+			publish(ws, "game", "newPlayer", ws.data.id, playerNumber, playerX, playerY);
 		},
 		message(ws, message) {
 			if (typeof message !== "string") {

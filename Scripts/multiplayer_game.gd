@@ -11,7 +11,7 @@ func playerMove(id: String, x: String, y: String, facing: String, anim: String) 
 	otherPlayer.targetPosition = Vector2(int(x), int(y))
 	otherPlayer.facing = facing
 
-	if not (otherPlayer.get_node("AnimatedSprite2D").animation.begins_with("double_jump") and anim.begins_with("double_jump")):
+	if not (otherPlayer.get_node("AnimatedSprite2D").animation.begins_with("double_jump") and anim.begins_with("double_jump")) and not (otherPlayer.get_node("AnimatedSprite2D").animation.begins_with("land") and anim.begins_with("land")):
 		otherPlayer.get_node("AnimatedSprite2D").play(anim)
 
 func playerHit(damage: String, x: String, y: String, stun: String) -> void:
@@ -26,13 +26,21 @@ func _ready() -> void:
 	Global.isMultiplayer = true
 	Global.init_multiplayer()
 
-	Global.on("inGame", func(x, y):
+	$Button.connect("button_down", func():
+		Global.set_process(false)
+		Global.socket.close()
+		Global.socket.connect_to_url($LineEdit.text, TLSOptions.client_unsafe())
+		Global.set_process(true))
+
+	Global.on("inGame", func(number, x, y):
 		player = playerScene.instantiate()
+		player.playerNumber = int(number)
 		player.position = Vector2(int(x), int(y))
 		add_child(player))
-	Global.on("newPlayer", func(id, x, y):
+	Global.on("newPlayer", func(id, number, x, y):
 		var newPlayer = dummyPlayerScene.instantiate()
 		newPlayer.targetPosition = Vector2(int(x), int(y))
+		newPlayer.player_number = int(number)
 		newPlayer.position = Vector2(int(x), int(y))
 		newPlayer.name = id
 		$OtherPlayers.add_child(newPlayer))

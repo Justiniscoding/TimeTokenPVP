@@ -122,16 +122,17 @@ var inNum = 1
 
 
 func _ready() -> void:
-	if name == "Player" :
-		inputNum = str(1)
-		inNum = 1
-		playerNumber = Global.playerNumber
-	else:
-		inputNum = str(2)
-		inNum = 2
-		playerNumber = Global.player2Number
-		if playerNumber != 4:
-			addToSpriteName = "2"
+	if not Global.isMultiplayer:
+		if name == "Player":
+			inputNum = str(1)
+			inNum = 1
+			playerNumber = Global.playerNumber
+		else:
+			inputNum = str(2)
+			inNum = 2
+			playerNumber = Global.player2Number
+			if playerNumber != 4:
+				addToSpriteName = "2"
 	
 	pnum = str(playerNumber)
 	

@@ -48,7 +48,7 @@ enum Attacks {
 	RANGED
 }
 
-var facing = 1
+var facing = -1
 
 var hasTime = false
 
@@ -102,7 +102,7 @@ var weapons = {
 		damage = 4
 	},
 	range4 = {
-		charge = 14.75,
+		charge = 7.75,
 		attack = 2.5,
 		cooldown = 50,
 		damage = 8
@@ -311,7 +311,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		direction *= 0.75
 
-		if $"Land Cast".is_colliding() and velocity.y > 200 and not isLanding:
+		if $"Land Cast".is_colliding() and velocity.y > 200 and not isLanding and currentAttack == Attacks.NONE and weaponState == WeaponState.READY:
 			$AnimatedSprite2D.play("land" + pnum + addToSpriteName)
 			isLanding = true
 
@@ -364,11 +364,13 @@ func _physics_process(delta: float) -> void:
 
 		if is_on_floor():
 			isJumping = true
-			$AnimatedSprite2D.play("jump" + pnum + addToSpriteName)
+			if weaponState == WeaponState.READY and currentAttack == Attacks.NONE:
+				$AnimatedSprite2D.play("jump" + pnum + addToSpriteName)
 			canDoubleJump = true
 			velocity.y = jump
 		elif canDoubleJump:
-			$AnimatedSprite2D.play("double_jump" + pnum + addToSpriteName)
+			if weaponState == WeaponState.READY and currentAttack == Attacks.NONE:
+				$AnimatedSprite2D.play("double_jump" + pnum + addToSpriteName)
 			canDoubleJump = false
 			velocity.y = doubleJumpSize
 

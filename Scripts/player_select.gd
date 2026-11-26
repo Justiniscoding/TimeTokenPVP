@@ -1,7 +1,7 @@
 extends Node2D
 
-var playerNum = 1
-var player2Num = 2
+var playerNum = Global.playerNumber - 1
+var player2Num = Global.player2Number - 1
 
 const p1Origin = Vector2(361, 119)
 const p2Origin = Vector2(195, 119)
@@ -41,15 +41,6 @@ func _process(_delta: float) -> void:
 	$"Player2 Selected".position = p2Origin + selected2 * gap
 
 	if Input.is_action_just_pressed("Set1"):
-		if playerNum == 0:
-			playerNum = 1
-		elif playerNum == 1:
-			playerNum = 0
-
-		if player2Num == 0:
-			player2Num = 1
-		elif player2Num == 1:
-			player2Num = 0
 		Global.playerNumber = playerNum + 1
 		Global.player2Number = player2Num + 1
 		get_tree().change_scene_to_file("res://Scenes/Countdown.tscn")

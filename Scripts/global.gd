@@ -5,8 +5,8 @@ signal hpChange(player, amount)
 var p1hp = 100
 var p2hp = 100
 
-var playerNumber = 3
-var player2Number = 4
+var playerNumber = 4
+var player2Number = 1
 
 var isMultiplayer = false
 var socket: WebSocketPeer

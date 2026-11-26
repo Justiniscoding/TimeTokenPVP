@@ -196,8 +196,8 @@ disabled = true
 material = SubResource("ShaderMaterial_vgqql")
 position = Vector2(2, -0.5)
 sprite_frames = ExtResource("3_vgqql")
-animation = &"land4"
-frame = 2
+animation = &"range4"
+frame = 14
 frame_progress = 1.0
 offset = Vector2(-7, 0)
 

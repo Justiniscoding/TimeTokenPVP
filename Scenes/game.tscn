@@ -51,7 +51,7 @@ script = ExtResource("1_v158k")
 [node name="Time Demon" type="AnimatedSprite2D" parent="." unique_id=949820943]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 2
-position = Vector2(20, -2)
+position = Vector2(98, 30)
 sprite_frames = SubResource("SpriteFrames_xs5hf")
 autoplay = "default"
 frame_progress = 0.14964102
@@ -82,19 +82,19 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." unique_id=297062209 instance=ExtResource("1_ebmjs")]
 modulate = Color(0.9490196, 0.9490196, 0.9490196, 1)
-position = Vector2(306, 31)
+position = Vector2(306, -25)
 
 [node name="Player2" parent="." unique_id=1520999625 instance=ExtResource("1_ebmjs")]
-position = Vector2(-121, 34)
+position = Vector2(-121, -22)
+
+[node name="Map 1" parent="." unique_id=850850135 instance=ExtResource("11_rku1e")]
+position = Vector2(73, 0)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1575957073 node_paths=PackedStringArray("player1", "player2")]
 position = Vector2(56, -7)
 script = ExtResource("3_1l0tm")
 player1 = NodePath("../Player")
 player2 = NodePath("../Player2")
-
-[node name="Map 1" parent="." unique_id=850850135 instance=ExtResource("11_rku1e")]
-position = Vector2(73, 56)
 
 [node name="MainThemeLoopPlayer" type="AudioStreamPlayer2D" parent="." unique_id=441424644]
 stream = ExtResource("5_1l0tm")
@@ -107,7 +107,7 @@ offset_right = 132.0
 offset_bottom = 37.0
 
 [node name="TimeToken" parent="." unique_id=15822373 instance=ExtResource("3_wrm1d")]
-position = Vector2(98, 102)
+position = Vector2(98, 50)
 original = true
 
 [node name="DeadZone" type="Area2D" parent="." unique_id=80208321]

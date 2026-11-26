@@ -14,7 +14,7 @@ script = ExtResource("1_eppud")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=854037354]
 texture = ExtResource("2_2o6fp")
 region_enabled = true
-region_rect = Rect2(250, 47, 8, 3)
+region_rect = Rect2(250, 47, 11, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1171395718]
 rotation = 1.5707964

@@ -88,7 +88,7 @@ var weapons = {
 		charge = 5,
 		attack = 15,
 		cooldown = 5,
-		damage = 4
+		damage = 3#4
 	},
 	range3 = {
 		charge = 3,

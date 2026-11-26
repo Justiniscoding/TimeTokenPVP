@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b14tglgnr6gnu"]
 
-[ext_resource type="Script" uid="uid://fsvtgligx4jy" path="res://Scenes/countdown.gd" id="1_hpfhb"]
+[ext_resource type="Script" uid="uid://fsvtgligx4jy" path="res://Scripts/countdown.gd" id="1_hpfhb"]
 [ext_resource type="AudioStream" uid="uid://b83fhoieai3sf" path="res://Music/MainThemeIntro.wav" id="2_0r5b0"]
 [ext_resource type="Texture2D" uid="uid://c0oak3bf4bin2" path="res://Art/Loading Bar.png" id="3_6qswr"]
 [ext_resource type="Texture2D" uid="uid://cfhemvcsxf5pg" path="res://Art/Start Loading Bar Vine Top.png" id="3_xtcw7"]

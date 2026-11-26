@@ -2,5 +2,6 @@
 .godot/
 /android/
 
-*.uid
 exports/
+
+node_modules

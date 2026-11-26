@@ -139,4 +139,11 @@ offset_right = -46.0
 offset_bottom = 134.0
 color = Color(0.21568628, 0.5803922, 0.43137255, 1)
 
+[node name="Multiplayer Button" type="Button" parent="." unique_id=1826405777]
+offset_left = -125.0
+offset_top = 66.0
+offset_right = -27.0
+offset_bottom = 97.0
+text = "multiplayer"
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

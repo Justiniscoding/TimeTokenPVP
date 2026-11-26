@@ -3,7 +3,10 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AudioStreamPlayer2D.play() # Replace with function body.
+	$AudioStreamPlayer2D.play()
+	$"Multiplayer Button".connect("button_down", func(): 
+		Global.isMultiplayer = true
+		get_tree().change_scene_to_file("res://Scenes/MultiplayerGame.tscn"))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

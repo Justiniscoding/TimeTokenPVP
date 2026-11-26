@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://c3xdduejvxnti"]
+
+[ext_resource type="Texture2D" uid="uid://blh3ymp0jdoli" path="res://Art/Map 2.png" id="1_08gir"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rrbq"]
+atlas = ExtResource("1_08gir")
+region = Rect2(0, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuwv3"]
+atlas = ExtResource("1_08gir")
+region = Rect2(640, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuwls"]
+atlas = ExtResource("1_08gir")
+region = Rect2(1280, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmr3o"]
+atlas = ExtResource("1_08gir")
+region = Rect2(1920, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfstx"]
+atlas = ExtResource("1_08gir")
+region = Rect2(2560, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54pvs"]
+atlas = ExtResource("1_08gir")
+region = Rect2(3200, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li4nk"]
+atlas = ExtResource("1_08gir")
+region = Rect2(3840, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hureu"]
+atlas = ExtResource("1_08gir")
+region = Rect2(4480, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnumt"]
+atlas = ExtResource("1_08gir")
+region = Rect2(5120, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyleh"]
+atlas = ExtResource("1_08gir")
+region = Rect2(5760, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bif2"]
+atlas = ExtResource("1_08gir")
+region = Rect2(6400, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbmb3"]
+atlas = ExtResource("1_08gir")
+region = Rect2(7040, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4hyw"]
+atlas = ExtResource("1_08gir")
+region = Rect2(7680, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f64o1"]
+atlas = ExtResource("1_08gir")
+region = Rect2(8320, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfnm7"]
+atlas = ExtResource("1_08gir")
+region = Rect2(8960, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ayri"]
+atlas = ExtResource("1_08gir")
+region = Rect2(9600, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7h61"]
+atlas = ExtResource("1_08gir")
+region = Rect2(10240, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c587"]
+atlas = ExtResource("1_08gir")
+region = Rect2(10880, 0, 640, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofkmh"]
+atlas = ExtResource("1_08gir")
+region = Rect2(11520, 0, 640, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_al0cd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rrbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuwv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuwls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmr3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfstx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54pvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li4nk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hureu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnumt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyleh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bif2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbmb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4hyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f64o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfnm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ayri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7h61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c587")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofkmh")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Map 2" type="StaticBody2D" unique_id=874667154]
+collision_layer = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1300023332]
+sprite_frames = SubResource("SpriteFrames_al0cd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=614707053]
+polygon = PackedVector2Array(237, 44, -217, 44, -217, 46, -216, 46, -216, 48, -215, 48, -215, 52, -214, 52, -214, 56, -213, 56, -213, 61, -212, 61, -212, 65, -211, 65, -211, 86, 232, 85, 232, 77, 231, 77, 231, 75, 230, 75, 230, 74, 229, 74, 229, 71, 230, 71, 230, 67, 231, 67, 231, 63, 232, 63, 232, 59, 233, 59, 233, 56, 234, 56, 234, 53, 235, 53, 235, 50, 236, 50, 236, 49, 235, 49, 235, 48, 237, 48)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." unique_id=2123595065]
+polygon = PackedVector2Array(199, -8, 199, -6, 198, -6, 198, -5, 197, -5, 197, -4, 196, -4, 196, -1, 195, -1, 195, 1, 194, 1, 194, 2, 193, 2, 193, 4, 192, 4, 192, 5, 191, 5, 191, 6, 189, 6, 189, 7, 188, 7, 188, 9, 187, 9, 187, 11, 186, 11, 186, 14, 185, 14, 185, 17, 184, 17, 184, 18, 183, 18, 183, 17, 182, 17, 182, 13, 181, 13, 181, 11, 180, 11, 180, 9, 179, 9, 179, 8, 178, 8, 178, 10, 177, 10, 177, 13, 176, 13, 176, 17, 175, 17, 175, 20, 174, 20, 174, 22, 173, 22, 173, 20, 172, 20, 172, 16, 171, 16, 171, 13, 170, 13, 170, 12, 169, 12, 169, 11, 168, 11, 168, 10, 167, 10, 167, 9, 166, 9, 166, 12, 165, 12, 165, 15, 164, 15, 164, 12, 163, 12, 163, 8, 162, 8, 162, 9, 161, 9, 161, 10, 160, 10, 160, 13, 159, 13, 159, 15, 158, 15, 158, 14, 157, 14, 157, 11, 156, 11, 156, 8, 155, 8, 155, 7, 153, 7, 153, 9, 152, 9, 152, 8, 151, 8, 151, 9, 150, 9, 150, 12, 149, 12, 149, 14, 148, 14, 148, 13, 147, 13, 147, 10, 146, 10, 146, 9, 145, 9, 145, 11, 144, 11, 144, 9, 143, 9, 143, 7, 140, 7, 140, 9, 139, 9, 139, 11, 138, 11, 138, 12, 137, 12, 137, 14, 136, 14, 136, 17, 135, 17, 135, 16, 134, 16, 134, 13, 133, 13, 133, 12, 132, 12, 132, 9, 131, 9, 131, 7, 129, 7, 129, 9, 128, 9, 128, 11, 127, 11, 127, 9, 125, 9, 125, 7, 124, 7, 124, 8, 123, 8, 123, 11, 122, 11, 122, 15, 121, 15, 121, 20, 120, 20, 120, 18, 119, 18, 119, 14, 118, 14, 118, 11, 117, 11, 117, 8, 116, 8, 116, 7, 112, 7, 112, 9, 111, 9, 111, 11, 110, 11, 110, 9, 109, 9, 109, 7, 107, 7, 107, 11, 106, 11, 106, 14, 105, 14, 105, 13, 104, 13, 104, 11, 103, 11, 103, 10, 102, 10, 102, 8, 101, 8, 101, 7, 100, 7, 100, 5, 98, 5, 98, 3, 97, 3, 97, 2, 96, 2, 96, 1, 95, 1, 95, 0, 94, 0, 94, -1, 93, -1, 93, -2, 92, -2, 92, -2, 92, -3, 91, -3, 91, -5, 90, -5, 90, -6, 89, -6, 89, -8)

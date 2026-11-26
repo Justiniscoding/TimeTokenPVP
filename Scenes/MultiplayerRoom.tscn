@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c5lp7qhpspyv7"]
+
+[ext_resource type="Script" uid="uid://ck3bcmc71wq47" path="res://Scenes/multiplayer_room.gd" id="1_b7c7a"]
+
+[node name="Multiplayer Room" type="Control" unique_id=1256445016]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b7c7a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1120488911]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1294417698]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Justin's Room"
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1349827729]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Join"

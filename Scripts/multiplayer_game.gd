@@ -11,11 +11,10 @@ func playerMove(id: String, x: String, y: String, facing: String, anim: String) 
 	otherPlayer.targetPosition = Vector2(int(x), int(y))
 	otherPlayer.facing = facing
 
-	if not (otherPlayer.get_node("AnimatedSprite2D").animation.begins_with("double_jump") and anim.begins_with("double_jump")) and not (otherPlayer.get_node("AnimatedSprite2D").animation.begins_with("land") and anim.begins_with("land")):
+	if otherPlayer.get_node("AnimatedSprite2D").animation != anim:
 		otherPlayer.get_node("AnimatedSprite2D").play(anim)
 
 func playerHit(damage: String, x: String, y: String, stun: String) -> void:
-	print("here")
 	player.targetVel.x += int(x)
 	player.targetVel.y += int(y)
 

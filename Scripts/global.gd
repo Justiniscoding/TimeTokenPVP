@@ -5,6 +5,8 @@ signal hpChange(player, amount)
 var p1hp = 100
 var p2hp = 100
 
+var winning_player = 0
+
 var playerNumber = 4
 var player2Number = 1
 
@@ -17,6 +19,10 @@ func remove_hp(playerNum: int, amount: int) -> void:
 	else:
 		p2hp -= amount
 	emit_signal("hpChange", playerNum, amount)
+
+func player_won(player_number: int) -> void:
+	winning_player = player_number
+	get_tree().change_scene_to_file("res://Scenes/win_screen.tscn")
 
 func _ready() -> void:
 	set_process(false)

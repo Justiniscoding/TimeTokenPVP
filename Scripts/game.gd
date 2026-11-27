@@ -28,9 +28,9 @@ func hpChange(playerNum, _amount):
 
 	await tween.finished
 	if Global.p1hp <= 0:
-		get_tree().change_scene_to_file("res://Scenes/ReneeWins.tscn")
+		Global.player_won(2)
 	elif Global.p2hp <= 0:
-		get_tree().change_scene_to_file("res://Scenes/BorrisWins.tscn")
+		Global.player_won(1)
 
 var startDelay = 2
 
@@ -51,6 +51,6 @@ func _process(delta: float) -> void:
 	if $DeadZone.has_overlapping_bodies():
 		for body in $DeadZone.get_overlapping_bodies():
 			if body.name == "Player":
-				get_tree().change_scene_to_file("res://Scenes/ReneeWins.tscn")
+				Global.player_won(2)
 			if body.name == "Player2":
-				get_tree().change_scene_to_file("res://Scenes/BorrisWins.tscn")
+				Global.player_won(1)

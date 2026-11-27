@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cmy6cbvgailma"]
 
 [ext_resource type="Script" uid="uid://8rgf6gi2jdrr" path="res://Scripts/player_select.gd" id="1_5hknh"]
-[ext_resource type="Texture2D" uid="uid://cu5pmbihh5xc8" path="res://Art/CHAR SELECT.png" id="2_733v4"]
+[ext_resource type="Texture2D" uid="uid://dj4khs0p53ie6" path="res://Art/CHAR SELECT SCRENE.png" id="2_thimi"]
 [ext_resource type="Texture2D" uid="uid://gkn1n7ebkvk6" path="res://Art/CHAR SELECT WINDOW.png" id="3_thimi"]
+[ext_resource type="Texture2D" uid="uid://c0x4hvy5mhgw1" path="res://Art/Time Token.png" id="4_5hknh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hknh"]
 atlas = ExtResource("3_thimi")
@@ -36,16 +37,25 @@ color = Color(0.21568628, 0.5803922, 0.43137255, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=598525295]
 position = Vector2(195, 119)
-texture = ExtResource("2_733v4")
+texture = ExtResource("2_thimi")
 
 [node name="Player1 Selected" type="AnimatedSprite2D" parent="." unique_id=1630994540]
-position = Vector2(243, 119)
+position = Vector2(195, 198)
 sprite_frames = SubResource("SpriteFrames_xs5hf")
 autoplay = "default"
-frame_progress = 0.8594962
 
 [node name="Player2 Selected" type="AnimatedSprite2D" parent="." unique_id=1013654234]
-position = Vector2(361, 119)
+position = Vector2(361, 146)
 sprite_frames = SubResource("SpriteFrames_xs5hf")
 autoplay = "default"
 frame_progress = 0.6778261
+
+[node name="Player1 TT" type="Sprite2D" parent="." unique_id=2108411109]
+position = Vector2(113, 186)
+texture = ExtResource("4_5hknh")
+hframes = 12
+
+[node name="Player2 TT" type="Sprite2D" parent="." unique_id=772596993]
+position = Vector2(277, 186)
+texture = ExtResource("4_5hknh")
+hframes = 12

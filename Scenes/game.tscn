@@ -82,10 +82,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." unique_id=297062209 instance=ExtResource("1_ebmjs")]
 modulate = Color(0.9490196, 0.9490196, 0.9490196, 1)
-position = Vector2(314, -18)
+position = Vector2(-118, -15)
 
 [node name="Player2" parent="." unique_id=1520999625 instance=ExtResource("1_ebmjs")]
-position = Vector2(-112, -22)
+position = Vector2(311, -16)
 
 [node name="Map 1" parent="." unique_id=850850135 instance=ExtResource("8_o5yvi")]
 position = Vector2(71, 5)

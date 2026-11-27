@@ -13,7 +13,6 @@ func createRoom() -> void:
 	
 func joinRoom(roomName: String) -> void:
 	print("here")
-	print(roomName)
 
 func _ready() -> void:
 	$GUI/VBoxContainer/CreatRoom.connect("pressed", createRoom)

@@ -9,8 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://dl3sxhtnvy34y" path="res://Music/MainThemeLoop.wav" id="5_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://dp6ytnjnvsl6" path="res://Art/Renee Health Bar Top.png" id="5_rku1e"]
 [ext_resource type="Texture2D" uid="uid://udnjqch7qpb0" path="res://Art/Health Bar.png" id="6_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://csqbyyg467xfp" path="res://Scenes/map_1.tscn" id="8_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://drtel6jj76d3m" path="res://Art/TIME DEMON.png" id="11_o5yvi"]
-[ext_resource type="PackedScene" uid="uid://csqbyyg467xfp" path="res://Scenes/map_1.tscn" id="11_rku1e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rku1e"]
 atlas = ExtResource("11_o5yvi")
@@ -82,13 +82,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." unique_id=297062209 instance=ExtResource("1_ebmjs")]
 modulate = Color(0.9490196, 0.9490196, 0.9490196, 1)
-position = Vector2(306, -25)
+position = Vector2(314, -18)
 
 [node name="Player2" parent="." unique_id=1520999625 instance=ExtResource("1_ebmjs")]
-position = Vector2(-121, -22)
+position = Vector2(-112, -22)
 
-[node name="Map 1" parent="." unique_id=850850135 instance=ExtResource("11_rku1e")]
-position = Vector2(73, 0)
+[node name="Map 1" parent="." unique_id=850850135 instance=ExtResource("8_o5yvi")]
+position = Vector2(71, 5)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1575957073 node_paths=PackedStringArray("player1", "player2")]
 position = Vector2(56, -7)

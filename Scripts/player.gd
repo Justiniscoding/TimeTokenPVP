@@ -127,6 +127,7 @@ func _ready() -> void:
 			inputNum = str(1)
 			inNum = 1
 			playerNumber = Global.playerNumber
+			facing = 1
 		else:
 			inputNum = str(2)
 			inNum = 2
@@ -152,6 +153,21 @@ func _ready() -> void:
 		$"Weapon/Short Melee 1".disabled = false
 		$"Weapon/Short Melee 2".disabled = false
 		$"Weapon/Short Melee 3".disabled = false
+
+	# fix for p1 starting on wrong side
+	if name == "Player":
+		$AnimatedSprite2D.flip_h = true
+		$Weapon.scale.x = -1
+		$Weapon.position.x = 18
+		facing = 1
+
+		if playerNumber == 3:
+			$AnimatedSprite2D.position.x = 22
+
+		if playerNumber == 4:
+			$AnimatedSprite2D.offset.x = 15
+		else:
+			$AnimatedSprite2D.offset.x = 5
 	
 	# fixes shader param issue
 	$AnimatedSprite2D.material = $AnimatedSprite2D.material.duplicate()

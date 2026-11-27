@@ -85,7 +85,7 @@ modulate = Color(0.9490196, 0.9490196, 0.9490196, 1)
 position = Vector2(-118, -15)
 
 [node name="Player2" parent="." unique_id=1520999625 instance=ExtResource("1_ebmjs")]
-position = Vector2(311, -16)
+position = Vector2(309, -16)
 
 [node name="Map 1" parent="." unique_id=850850135 instance=ExtResource("8_o5yvi")]
 position = Vector2(71, 5)

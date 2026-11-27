@@ -3,6 +3,8 @@ extends Node2D
 var timeTokenScene = preload("res://Scenes/TimeToken.tscn")
 var timePerToken = 10
 
+var hide_mouse_timer = 0
+
 func _ready() -> void:
 	$Control/Renee.value = 100
 	$Control/Boris.value = 100
@@ -11,9 +13,14 @@ func _ready() -> void:
 
 	Global.connect("hpChange", hpChange)
 
-func hpChange(playerNum, _amount):
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		hide_mouse_timer = 2
+
+func hpChange(player_num, _amount):
 	var tween: Tween = get_tree().create_tween()
-	if playerNum == 2:
+	if player_num == 2:
 		tween.tween_property($Control/Renee, "value", Global.p2hp, 0.5)
 		$Player2.modulate = Color8(255, 100, 100, 255)
 	
@@ -35,6 +42,12 @@ func hpChange(playerNum, _amount):
 var startDelay = 2
 
 func _process(delta: float) -> void:
+	if hide_mouse_timer > 0:
+		hide_mouse_timer -= delta
+
+		if hide_mouse_timer <= 0:
+			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+
 	timePerToken -= delta
 	if timePerToken <= 0:
 		var timeToken = timeTokenScene.instantiate()

@@ -3,12 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://6b46cgob32hp" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://oho1sh82b3xk" path="res://Scripts/game.gd" id="1_v158k"]
 [ext_resource type="Script" uid="uid://bbldk7smspsne" path="res://Scripts/camera_2d.gd" id="3_1l0tm"]
-[ext_resource type="Texture2D" uid="uid://qhy6wyfecg4x" path="res://Art/Boris Health Bar.png" id="3_rku1e"]
+[ext_resource type="PackedScene" uid="uid://cin1qi3ukycor" path="res://Scenes/health_bar.tscn" id="3_v158k"]
 [ext_resource type="PackedScene" uid="uid://b88qmaxe3ua7i" path="res://Scenes/TimeToken.tscn" id="3_wrm1d"]
-[ext_resource type="Texture2D" uid="uid://boqcnefuof047" path="res://Art/Renee Health Bar.png" id="4_o5yvi"]
 [ext_resource type="AudioStream" uid="uid://dl3sxhtnvy34y" path="res://Music/MainThemeLoop.wav" id="5_1l0tm"]
-[ext_resource type="Texture2D" uid="uid://dp6ytnjnvsl6" path="res://Art/Renee Health Bar Top.png" id="5_rku1e"]
-[ext_resource type="Texture2D" uid="uid://udnjqch7qpb0" path="res://Art/Health Bar.png" id="6_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://csqbyyg467xfp" path="res://Scenes/map_1.tscn" id="8_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://drtel6jj76d3m" path="res://Art/TIME DEMON.png" id="11_o5yvi"]
 
@@ -56,29 +53,19 @@ sprite_frames = SubResource("SpriteFrames_xs5hf")
 autoplay = "default"
 frame_progress = 0.14964102
 
-[node name="Control" type="CanvasLayer" parent="." unique_id=251352132]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=251352132]
 
-[node name="Boris" type="TextureProgressBar" parent="Control" unique_id=33905053]
-offset_left = 320.0
-offset_top = -2.0
-offset_right = 448.0
-offset_bottom = 62.0
-value = 100.0
-texture_under = ExtResource("3_rku1e")
-texture_progress = ExtResource("6_1l0tm")
-texture_progress_offset = Vector2(13, 13)
+[node name="Health Bar1" parent="CanvasLayer" unique_id=1008922715 instance=ExtResource("3_v158k")]
+offset_right = 64.0
+offset_bottom = 32.0
 
-[node name="Renee" type="TextureProgressBar" parent="Control" unique_id=1410879824]
-offset_left = -9.0
-offset_top = -1.0
-offset_right = 119.0
-offset_bottom = 63.0
-value = 100.0
-texture_under = ExtResource("4_o5yvi")
-texture_over = ExtResource("5_rku1e")
-texture_progress = ExtResource("6_1l0tm")
-texture_progress_offset = Vector2(13, 13)
-metadata/_edit_use_anchors_ = true
+[node name="Health Bar2" parent="CanvasLayer" unique_id=520670891 instance=ExtResource("3_v158k")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -59.0
+offset_right = 0.0
+grow_horizontal = 0
 
 [node name="Player" parent="." unique_id=297062209 instance=ExtResource("1_ebmjs")]
 modulate = Color(0.9490196, 0.9490196, 0.9490196, 1)

@@ -6,8 +6,8 @@ var timePerToken = 10
 var hide_mouse_timer = 0
 
 func _ready() -> void:
-	$Control/Renee.value = 100
-	$Control/Boris.value = 100
+	$"CanvasLayer/Health Bar1".init(Global.playerNumber - 1)
+	$"CanvasLayer/Health Bar2".init(Global.player2Number - 1)
 
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
@@ -21,13 +21,13 @@ func _input(event: InputEvent) -> void:
 func hpChange(player_num, _amount):
 	var tween: Tween = get_tree().create_tween()
 	if player_num == 2:
-		tween.tween_property($Control/Renee, "value", Global.p2hp, 0.5)
+		tween.tween_property($"CanvasLayer/Health Bar2", "value", Global.p2hp, 0.5)
 		$Player2.modulate = Color8(255, 100, 100, 255)
 	
 		get_tree().create_timer(0.5).connect("timeout", func():
 			$Player2.modulate = Color8(255, 255, 255))
 	else:
-		tween.tween_property($Control/Boris, "value", Global.p1hp, 0.5)
+		tween.tween_property($"CanvasLayer/Health Bar1", "value", Global.p1hp, 0.5)
 		$Player.modulate = Color8(100, 100, 255)
 		get_tree().create_timer(0.5).connect("timeout", func():
 			$Player.modulate = Color8(255, 255, 255))
